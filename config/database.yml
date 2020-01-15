@@ -1,0 +1,17 @@
+development:
+  adapter: sqlite3
+  database: db/guildball_authdevelopment.sqlite
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: sqlite3
+  database: db/guildball_authtest.sqlite
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: sqlite3
+  database: db/guildball_authproduction.sqlite
+  pool: 5
+  timeout: 5000
