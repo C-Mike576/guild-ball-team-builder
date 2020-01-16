@@ -14,4 +14,13 @@ class TeamsController < ApplicationController
         erb :"teams/new"
     end
 
+    post '/build-new-team' do
+        if_not_logged_in_redirect
+        unless Team.valid_params?(params)
+            redirect "/build-new-team?error=invalid team"
+        end
+        Team.create(params)
+        redirect '/teams'
+
+
 end

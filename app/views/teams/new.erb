@@ -1,7 +1,7 @@
 <h2>Team Builder</h2>
 
 <form method="POST" action="/build-new-team">
-<h3>Team Name:</h3><input type="text" name="team[name]"/>
+<h3>Team Name:</h3><input type="text" name="team[name]" required/>
 <br>
 <h3>Captian:</h3>
     <% @captians.each do |cap| %>
@@ -18,12 +18,37 @@
       <% end %>
 <br>
 <h3>Squaddies:</h3>
-    <h5>pick 4</h5>
+    <h5>position 1:</h5>
     <% @squaddies.each do |squad| %>
-      <input type="checkbox" name="team[squaddie_id][]" id="<%= squad.id %>" value="<%= squad.id %>"/>
+      <input type="radio" name="team[squaddie_1_id][]" id="<%= squad.id %>" value="<%= squad.id %>"/>
       <%= squad.name %> 
       <br>
       <% end %>
       <br>
+
+    <h5>position 2:</h5>
+    <% @squaddies.each do |squad| %>
+      <input type="radio" name="team[squaddie_2_id][]" id="<%= squad.id %>" value="<%= squad.id %>"/>
+      <%= squad.name %> 
+      <br>
+      <% end %>
+      <br>
+
+    <h5>position 3:</h5>
+    <% @squaddies.each do |squad| %>
+      <input type="radio" name="team[squaddie_3_id][]" id="<%= squad.id %>" value="<%= squad.id %>"/>
+      <%= squad.name %> 
+      <br>
+      <% end %>
+      <br>
+
+    <h5>position 4:</h5>
+    <% @squaddies.each do |squad| %>
+      <input type="radio" name="team[squaddie_4_id][]" id="<%= squad.id %>" value="<%= squad.id %>"/>
+      <%= squad.name %> 
+      <br>
+      <% end %>
+      <br>
+    
     <input type="submit" value="Create Team"/>
 </form>
