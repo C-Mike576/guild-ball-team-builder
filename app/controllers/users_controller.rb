@@ -1,3 +1,4 @@
+
 class UsersController < ApplicationController
 
     get '/signup' do
@@ -5,9 +6,12 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        @user = User.create(:username => params[:username], :password => params[:password])
-        session[:user_id] = @user.id
-        redirect '/teams'
+        if User.find_by(:username => params[:username])
+            redirect '/'
+        else
+            @user = User.create(:username => params[:username], :password => params[:password])
+            session[:user_id] = @user.id
+            redirect '/teams'
+        end
     end
-
 end

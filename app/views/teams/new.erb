@@ -1,1 +1,29 @@
 <h2>Team Builder</h2>
+
+<form method="POST" action="/build-new-team">
+<h3>Team Name:</h3><input type="text" name="team[name]"/>
+<br>
+<h3>Captian:</h3>
+    <% @captians.each do |cap| %>
+      <input type="radio" name="team[captian_id][]" id="<%= cap.id %>" value="<%= cap.id %>"/>
+      <%= cap.name %> 
+      <br>
+      <% end %>
+<br>
+<h3>Mascot:</h3>
+    <% @mascots.each do |mas| %>
+      <input type="radio" name="team[mascot_id][]" id="<%= mas.id %>" value="<%= mas.id %>"/>
+      <%= mas.name %> 
+      <br>
+      <% end %>
+<br>
+<h3>Squaddies:</h3>
+    <h5>pick 4</h5>
+    <% @squaddies.each do |squad| %>
+      <input type="checkbox" name="team[squaddie_id][]" id="<%= squad.id %>" value="<%= squad.id %>"/>
+      <%= squad.name %> 
+      <br>
+      <% end %>
+      <br>
+    <input type="submit" value="Create Team"/>
+</form>
