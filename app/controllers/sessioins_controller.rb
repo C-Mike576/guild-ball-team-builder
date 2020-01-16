@@ -9,16 +9,22 @@ class SessionsController < ApplicationController
     end
 
     post '/login' do
-        user = login(params[:username], params[:password])
-        if user
-            redirect '/teams'
-        else
-            redirect '/signup'
-        end
+        user = User.find_by(:username => params[:username])
+      if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        redirect "/teams"
+      else
+        redirect "/login"
+      end
     end
 
 
     get '/logout' do
-        logout!
+        if session[:user_id] != nil
+            session.clear
+            redirect '/login'
+        else
+            redirect '/'
+        end
     end
 end
