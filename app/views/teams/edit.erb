@@ -1,6 +1,6 @@
 <h2>Edit for <%= @team.name %></h2>
 
-<form method="POST" action="/team/:id">
+<form method="POST" action="/teams/:id">
 <h3>Team Name:</h3><input type="text" name="name" required/>
 <br>
 <h3>Captian:</h3>
@@ -50,5 +50,5 @@
       <% end %>
       <br>
     
-    <input type="submit" value="Create Team"/>
+    <input type="submit" value="Update Team"/>
 </form>

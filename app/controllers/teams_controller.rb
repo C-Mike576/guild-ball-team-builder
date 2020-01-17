@@ -27,7 +27,27 @@ class TeamsController < ApplicationController
     get '/teams/:id/edit' do
         if_not_logged_in_redirect
         @team = Team.find(params[:id])
-        erb:"teams/edit"
+        correct_user?(@team)
+        @captians = Player.where(:position => "Captian")
+        @mascots = Player.where(:position => "Mascot")
+        @squaddies = Player.where(:position => "Squaddie")
+        erb :"teams/edit"
+    end
+
+    post 'teams/:id' do
+        if_not_logged_in_redirect
+        correct_user?(@team)
+        @team.update(params)
+        redirect '/teams'
+    end
+
+    get 'teams/:id' do
+        if_not_logged_in_redirect
+        @picked_team = Team.find(params[:id])
+        correct_user?(@picked_team)
+        erb :"teams/show"
+    end
+
 
 
 end

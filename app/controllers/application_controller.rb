@@ -20,6 +20,13 @@ class ApplicationController < Sinatra::Base
       !!current_user
     end
 
+    def correct_user?(team)
+      if @current_user.id != team.user_id
+        redirect '/'
+      end
+    end
+  
+    
     def current_user
       @current_user ||= User.find_by(:id => session[:user_id]) if session[:user_id]
     end
