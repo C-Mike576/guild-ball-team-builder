@@ -1,6 +1,5 @@
 class Team < ActiveRecord::Base
     belongs_to :user
-    #has_many :players
     belongs_to :captian, class_name: "Player"
     belongs_to :mascot, class_name: "Player"
     belongs_to :squaddie_1, class_name: "Player"

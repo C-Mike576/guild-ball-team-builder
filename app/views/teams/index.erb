@@ -1,6 +1,6 @@
 <p>this is the team page</p>
-<%@teams.each do |team|%>
-    <%= team.name %>
+<% @teams.each do |team| %>
+    <a href="/teams/<%=team.id%>/edit"><%= team.name %></a>
 <% end %>
 
 <a href="/build-new-team">Build New Team</a>
