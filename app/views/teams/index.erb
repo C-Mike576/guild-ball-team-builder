@@ -1,7 +1,10 @@
-<p>this is the team page</p>
-<p>click team name to edit or you can build a new team</p>
+<h3>This is <%=@current_user.username%>'s team page.</h3>
+
 <% @teams.each do |team| %>
-    <a href="/teams/<%=team.id%>/edit"><%= team.name %></a>
+    <%=team.name%> 
+     <a href="/teams/<%=team.id%>">View</a>
+     <a href="/teams/<%=team.id%>/edit">Edit</a>
+   
     <br>
     
 <% end %>

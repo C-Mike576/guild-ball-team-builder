@@ -1,7 +1,7 @@
 <h2>Edit for <%= @team.name %></h2>
 
-<form method="POST" action="/teams/:id">
-<h3>Team Name:</h3><input type="text" name="name" required/>
+<form method="POST" action="/teams/<%=@team.id%>">
+<h3>Team Name:</h3><input type="text" name="name" value="<%=@team.name%>" required/>
 <br>
 <h3>Captian:</h3>
     <% @captians.each do |cap| %>
