@@ -1,0 +1,8 @@
+<h1>ARE YOU SURE YOU WANT TO DELETE <%=@delete_team.name%> FOREVER</h1>
+
+<form method="POST" action="/teams/<%=@delete_team.id%>/delete">
+<p>please choose:</p>
+<input type="radio" name="choose" value="yes">YES<br>
+<input type="radio" name="choose" value="no" checked>NO<br>
+<input type="submit" value="Submit"/>
+</form>
