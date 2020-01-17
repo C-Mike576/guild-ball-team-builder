@@ -1,6 +1,6 @@
-<h2>Team Builder</h2>
+<h2>Edit for <%= @team.name %></h2>
 
-<form method="POST" action="/build-new-team">
+<form method="POST" action="/team/:id">
 <h3>Team Name:</h3><input type="text" name="name" required/>
 <br>
 <h3>Captian:</h3>

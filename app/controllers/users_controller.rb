@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     post '/signup' do
         if User.find_by(:username => params[:username])
-            redirect '/?error=username taken'
+            redirect '/'
         else
             @user = User.create(:username => params[:username], :password => params[:password])
             session[:user_id] = @user.id
