@@ -18,9 +18,13 @@ class TeamsController < ApplicationController
 
     post '/build-new-team' do
         if_not_logged_in_redirect
-        @team = Team.new(params)
-        @team.user_id = session[:user_id]
-        @team.save
+        picked_squad = params.select{|p| p == "squaddie_1_id" || p == "squaddie_2_id" ||
+         p == "squaddie_3_id" || p == "squaddie_4_id"}
+        if picked_squad.values.uniq.length == picked_squad.values.length
+            @team = Team.new(params)
+            @team.user_id = session[:user_id]
+            @team.save
+        end
         redirect '/teams'
     end
 
@@ -53,13 +57,6 @@ class TeamsController < ApplicationController
         if_not_logged_in_redirect
         @picked_team = Team.find(params[:id])
         correct_user?(@picked_team)
-        @captian = @picked_team.captian#Player.find_by(:id => @picked_team.captian_id)
-        #change veiw to @picked_team.position
-        @mascot = Player.find_by(:id => @picked_team.mascot_id)
-        @squaddie_1 = Player.find_by(:id => @picked_team.squaddie_1_id)
-        @squaddie_2 = Player.find_by(:id => @picked_team.squaddie_2_id)
-        @squaddie_3 = Player.find_by(:id => @picked_team.squaddie_3_id)
-        @squaddie_4 = Player.find_by(:id => @picked_team.squaddie_4_id)
         erb :"teams/show"
     end
 
