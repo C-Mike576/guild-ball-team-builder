@@ -1,4 +1,4 @@
-<h3>This is <%=@current_user.username%>'s team page.</h3>
+<h3>This is <%= current_user.username%>'s team page.</h3>
 
 <% @teams.each do |team| %>
     <%=team.name%> 

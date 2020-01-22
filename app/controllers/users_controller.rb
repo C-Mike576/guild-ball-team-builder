@@ -11,7 +11,11 @@ class UsersController < ApplicationController
         else
             @user = User.create(:username => params[:username], :password => params[:password])
             session[:user_id] = @user.id
-            redirect '/teams'
+            if @user.valid? 
+                redirect '/teams'
+            else
+                redirect '/'
+            end
         end
     end
 end

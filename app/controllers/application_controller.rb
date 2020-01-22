@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def correct_user?(team)
-      if @current_user.id != team.user_id
+      if current_user.id != team.user_id
         redirect '/'
       end
     end

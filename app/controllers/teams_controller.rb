@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
     get '/teams' do
         if_not_logged_in_redirect
         @teams = Team.where(user_id: session[:user_id])
+        #@teams = current_user.teams
         erb :"teams/index"
     end
 
@@ -33,12 +34,18 @@ class TeamsController < ApplicationController
         erb :"teams/edit"
     end
 
-    post '/teams/:id' do
+    patch '/teams/:id' do
         if_not_logged_in_redirect
         @team = Team.find_by(:id => params[:id])
-        @team.update(params.select{|p| p == :captian_id || p == :name ||
-        p == :mascot_id || p == :squaddie_1_id || p == :squaddie_2_id||
-         p == :squaddie_3_id || p == :squaddie_4_id})
+        correct_user?(@team)
+        picked_squad = params.select{|p| p == "squaddie_1_id" || p == "squaddie_2_id" ||
+         p == "squaddie_3_id" || p == "squaddie_4_id"}
+        if picked_squad.values.uniq.length == picked_squad.values.length
+
+            @team.update(params.select{|p| p == "captian_id" || p == "name" ||
+            p == "mascot_id" || p == "squaddie_1_id" || p == "squaddie_2_id" ||
+             p == "squaddie_3_id" || p == "squaddie_4_id"})
+        end
         redirect '/teams'
     end
 
@@ -46,7 +53,8 @@ class TeamsController < ApplicationController
         if_not_logged_in_redirect
         @picked_team = Team.find(params[:id])
         correct_user?(@picked_team)
-        @captian = Player.find_by(:id => @picked_team.captian_id)
+        @captian = @picked_team.captian#Player.find_by(:id => @picked_team.captian_id)
+        #change veiw to @picked_team.position
         @mascot = Player.find_by(:id => @picked_team.mascot_id)
         @squaddie_1 = Player.find_by(:id => @picked_team.squaddie_1_id)
         @squaddie_2 = Player.find_by(:id => @picked_team.squaddie_2_id)
@@ -64,6 +72,7 @@ class TeamsController < ApplicationController
     
     post '/teams/:id/delete' do
         if_not_logged_in_redirect
+        #check user and change to delete request
         if params[:choose] == "yes"
             @delete_team = Team.find(params[:id])
             @delete_team.delete

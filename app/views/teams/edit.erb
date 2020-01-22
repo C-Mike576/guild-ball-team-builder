@@ -1,18 +1,23 @@
 <h2>Edit for <%= @team.name %></h2>
 
 <form method="POST" action="/teams/<%=@team.id%>">
+
+<input type="hidden" name="_method" value="PATCH">
+
 <h3>Team Name:</h3><input type="text" name="name" value="<%=@team.name%>" required/>
 <br>
 <h3>Captian:</h3>
     <% @captians.each do |cap| %>
-      <input type="radio" name="captian_id" id="<%= cap.id %>" value="<%= cap.id %>"/>
+      <input type="radio" name="captian_id" id="<%= cap.id %>" value="<%= cap.id %>" 
+      <%="checked" if @team.captian_id == cap.id %> />
       <%= cap.name %> 
       <br>
       <% end %>
 <br>
 <h3>Mascot:</h3>
     <% @mascots.each do |mas| %>
-      <input type="radio" name="mascot_id" id="<%= mas.id %>" value="<%= mas.id %>"/>
+      <input type="radio" name="mascot_id" id="<%= mas.id %>" value="<%= mas.id %>"
+      <%="checked" if @team.mascot_id == mas.id %> />
       <%= mas.name %> 
       <br>
       <% end %>
