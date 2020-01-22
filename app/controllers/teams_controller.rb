@@ -67,11 +67,12 @@ class TeamsController < ApplicationController
         erb :"teams/delete"
     end
     
-    post '/teams/:id/delete' do
+    delete '/teams/:id/delete' do
         if_not_logged_in_redirect
         #check user and change to delete request
-        if params[:choose] == "yes"
-            @delete_team = Team.find(params[:id])
+        @delete_team = Team.find(params[:id])
+        correct_user?(@delete_team)
+        if params[:choose] == "yes" 
             @delete_team.delete
             redirect '/teams'
         else 
