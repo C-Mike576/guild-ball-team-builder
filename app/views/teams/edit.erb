@@ -25,7 +25,8 @@
 <h3>Squaddies:</h3>
     <h5>position 1:</h5>
     <% @squaddies.each do |squad| %>
-      <input type="radio" name="squaddie_1_id" id="<%= squad.id %>" value="<%= squad.id %>"/>
+      <input type="radio" name="squaddie_1_id" id="<%= squad.id %>" value="<%= squad.id %>"
+      <%="checked" if @team.squaddie_1_id == squad.id %> />
       <%= squad.name %> 
       <br>
       <% end %>
@@ -33,7 +34,8 @@
 
     <h5>position 2:</h5>
     <% @squaddies.each do |squad| %>
-      <input type="radio" name="squaddie_2_id" id="<%= squad.id %>" value="<%= squad.id %>"/>
+      <input type="radio" name="squaddie_2_id" id="<%= squad.id %>" value="<%= squad.id %>"
+      <%="checked" if @team.squaddie_2_id == squad.id %> />
       <%= squad.name %> 
       <br>
       <% end %>
@@ -41,7 +43,8 @@
 
     <h5>position 3:</h5>
     <% @squaddies.each do |squad| %>
-      <input type="radio" name="squaddie_3_id" id="<%= squad.id %>" value="<%= squad.id %>"/>
+      <input type="radio" name="squaddie_3_id" id="<%= squad.id %>" value="<%= squad.id %>"
+      <%="checked" if @team.squaddie_3_id == squad.id %> />
       <%= squad.name %> 
       <br>
       <% end %>
@@ -49,7 +52,8 @@
 
     <h5>position 4:</h5>
     <% @squaddies.each do |squad| %>
-      <input type="radio" name="squaddie_4_id" id="<%= squad.id %>" value="<%= squad.id %>"/>
+      <input type="radio" name="squaddie_4_id" id="<%= squad.id %>" value="<%= squad.id %>"
+      <%="checked" if @team.squaddie_4_id == squad.id %> />
       <%= squad.name %> 
       <br>
       <% end %>
